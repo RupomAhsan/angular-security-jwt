@@ -1,0 +1,49 @@
+<div class="card" *ngIf="players">
+  <div class="card-header bg-info">
+    <h5 class="card-title">Player List</h5>
+
+  </div>
+  <div class="card-body">
+    <div class="row" *ngIf="players && players.length">
+      <div class="col-xs-12">
+        <button class="btn btn-primary" (click)="addPlayer()" *ngIf="securityObject.canAddPlayer">
+          Add New Player
+        </button>
+      </div>
+    </div>
+    <div *ngIf="players && players.length">
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>Edit</th>
+            <th>Name</th>
+            <th>Joined Date</th>
+            <th class="text-right">Price</th>
+            <th>Nationality</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let player of players">
+            <td>
+              <a href="#" class="btn btn-primary" [routerLink]="['/playerDetail', player.id]">
+                <fa name="edit"></fa>
+                <!-- <i class="glyphicon glyphicon-pencil"></i> -->
+              </a>
+            </td>
+            <td>{{player.name}}</td>
+            <td>{{player.joinedDate | date:"MM/dd/yyyy"}}</td>
+            <td class="text-right">{{player.price | currency}}</td>
+            <td>{{player.nationality | uppercase}}</td>
+            <td>
+              <button (click)="deletePlayer(player.id)" class="btn btn-danger">
+                <fa name="trash"></fa>
+                <!-- <i class="glyphicon glyphicon-trash"></i> -->
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

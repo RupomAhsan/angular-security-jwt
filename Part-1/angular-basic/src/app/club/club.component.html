@@ -1,0 +1,31 @@
+<div class="card" *ngIf="clubs">
+  <div class="card-header bg-info">
+    <h5 class="card-title">Club List</h5>
+
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <button class="btn btn-primary" (onclick)="addClub()" *ngIf="securityObject.canAddClub">
+          Add New Club
+        </button>
+      </div>
+    </div>
+    <div *ngIf="clubs && clubs.length">
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let club of clubs">
+            <td>{{club.id}}</td>
+            <td>{{club.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
